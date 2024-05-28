@@ -2,7 +2,12 @@
     
 import os
     
-restaurantes=['PythonBurguer','Madalousso','Notubo']
+# restaurantes=['PythonBurguer','Madalousso','Notubo']
+
+# dicionário - relação chave e valor
+restaurantes = [{'nome':'Pão com Banha','categoria':'gourmet', 'ativo':False},
+                {'nome':'Saco do Feijão','categoria':'feijoada', 'ativo':True},
+                {'nome':'Bife Sujo','categoria':'churrascaria', 'ativo':False}]
     
 def exibir_nome_do_programa():
     print('𝓢𝓪𝓫𝓸𝓻 𝓔𝔁𝓹𝓻𝓮𝓼𝓼')
@@ -24,15 +29,22 @@ def opcao_invalida():
 def cadastrar_novo_restaurante():
     exibir_subtitulo('CADASTRO DE NOVOS RESTAURANTES')
     nome_do_restaurante=input('Digite o nome do restaurante que você quer cadastrar: ')
-    restaurantes.append(nome_do_restaurante)
-    
+    categoria =input(f'Digite a categoria do restaurante {nome_do_restaurante}: ')
+    # criar formato do dicionário pra daí apendar
+    dados_do_restaurante = {'nome':nome_do_restaurante,'categoria':categoria,'ativo':False}
+    restaurantes.append(dados_do_restaurante)
+    print(f'O restaurante {nome_do_restaurante} foi cadastrado com sucesso!')
     voltar_menu_principal()
     
 def listar_restaurantes():
-    exibir_subtitulo('LISTANDO RESTAURANTES')
+    exibir_subtitulo('LISTANDO RESTAURANTES\n')
     
     for restaurante in restaurantes:
-        print(restaurante)
+        # print(restaurante)
+        nome_do_restaurante=restaurante['nome']
+        categoria = restaurante['categoria']
+        ativo= 'Ativado' if restaurante['ativo'] else 'Desativado'
+        print(f'- {nome_do_restaurante} | {categoria} | {ativo}')
         
     voltar_menu_principal()
         
